@@ -1,0 +1,21 @@
++++Objective 1+++
+
+Predict the "assessed_value" of a house using whatever features you can utilize, based on the provided dataset of 70,000+ houses.
+
+Divide the provided dataset of 70,000+ houses into training data and testing data randomly. 10% of the data should be testing data. Train and tune your model on your training dataset ONLY. Report errors (relative errors or RMSE) on the held out testing data.
+
++++Objective 2+++
+
+Predict the increase (1) or decrease (-1) of "assessed_value" of a house from year 2015 to year 2016. Again, 10% of randomly selected houses should be testing data, for which the 2016 assessed_value is unknown. First, assume the 2015 assessed_value is always known for all the houses and can be used as a feature in your prediction. Second, redo the task assuming the 2015 assessed_value is not known for houses in the test dataset and thus can NOT be used as a feature in your prediction.
+
+1. Only work on the 70,000+ houses that appear in the provided dataset.
+
+2. Retrieve the 2015 assessed_value and 2016 assessed_value of each house (uniquely identified by a number of attributes, e.g., address) by looking up the corresponding information from the following open data:
+
+https://data.edmonton.ca/City-Administration/Property-Assessment-Data-2012-2016-/qi6a-xuwt/data
+
+Note that in Edmonton Open Property Assessment Data, the GPS locations are not available. That is why you are asked to only work on the provided 70,000+ houses, so that you can leverage the GPS information if you want, but fill the missing assessed_values from Edmonton Open Property Assessment Data.
+
++++Evaluation+++
+
+Your project will be evaluated based on a presentation delivered by your group followed by a brief defence, close to the end of this term. All group members must present. The referees include myself and the TA.

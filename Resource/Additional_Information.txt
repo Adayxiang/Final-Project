@@ -1,0 +1,13 @@
+1. Two additional readings (completely optional), which give some idea of how to use the GPS information in the predictors:
+
+Bang Liu, Borislav Mavrin, Di Niu, Linglong Kong. "House Price Modeling over Heterogeneous Regions with Hierarchical Spatial Functional Analysis,¡± in the Proceedings of IEEE International Conference on Data Mining (ICDM) 2016, Barcelona, Spain, Dec 12-15, 2016.
+
+Hallac, David, Jure Leskovec, and Stephen Boyd. "Network lasso: Clustering and optimization in large graphs." Proceedings of the 21th ACM SIGKDD international conference on knowledge discovery and data mining. ACM, 2015.
+
+http://stanford.edu/~boyd/papers/network_lasso.html
+
+However, you may feel free to use the longitude and latitude in your own way (e.g., by adding them as two of the predictors in a linear regression model). Or you may omit them completely if think they are not useful. But of course, if you can utilize more information effectively, you will be able to improve your model.
+
+2. You may use whatever software to do the project. You won't get a penalty for not using R on any part of the project. For example, some people last year used Pandas and Python to preprocess data and some other people used Excel for preprocessing. It was fine. However, it is recommended that you use R, especially for the core part of the project that deals withmachine learning models. Otherwise, you will be completely on your own, without being able to reuse the R code we have provided in a large amount of examples in this course. 
+
+3. The marking rubric has been posted with a total mark of 10 (normally you won't get more than 10) + 1 (bonus point for exceeding expectation).
