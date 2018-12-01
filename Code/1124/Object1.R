@@ -86,3 +86,50 @@ predValue = pred$fit
 pred=predict(fit,newdata=testData,se = T)
 predValue = pred$fit
 (mean((pred$fit-ytest)^2))^0.5
+
+
+
+#neural Network
+maxs <- apply(trainData, 2, max) 
+mins <- apply(trainData, 2, min)
+scaledTrain <- as.data.frame(scale(trainData, center = mins, scale = maxs - mins))
+
+library(neuralnet)
+n <- names(scaledTrain)
+n
+f <- as.formula(paste("x_2015 ~", paste(n[!n %in% "x_2015"], collapse = " + ")))
+f
+nn <- neuralnet(f,data=scaledTrain,hidden=c(5),linear.output = TRUE,lifesign = 'full')
+
+plot(nn)
+
+scaledTest <- as.data.frame(scale(testData, center = mins, scale = maxs - mins))
+
+pr.nn <- compute(nn,scaledTest)
+pr.nnRaw <- pr.nn$net.result*(maxs-mins)+mins
+(mean((pr.nnRaw-testData['x_2015'])^2))^0.5
+
+
+#random forest
+library(randomForest)
+set.seed(1)
+ram.house=randomForest(x_2015~.,data=trainData,mtry=4,importance=TRUE)
+#based on train RMSE
+yhat.random = predict(ram.house,newdata=trainData)
+diff = yhat.random - trainData$x_2015
+plot(diff)
+(mean((yhat.random-trainData$x_2015)^2))^(1/2)
+#based on Test RMSE
+yhat.random = predict(ram.house,newdata=testData)
+diff = yhat.random - testData$x_2015
+plot(diff)
+(mean((yhat.random-testData$x_2015)^2))^(1/2)
+
+
+#boosting
+library(gbm)
+set.seed(1)
+boost.house=gbm(x_2015~.,data=trainData,distribution="gaussian",n.trees=5000,interaction.depth=2)
+yhat.boost=predict(boost.house,newdata=testData,n.trees=5000)
+(mean((yhat.boost-testData$x_2015)^2))^(1/2)
+
