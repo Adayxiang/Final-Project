@@ -219,6 +219,24 @@ rf.pred=prediction(rf.pre[,2],ytest1)
 rf.perf=performance(rf.pred,"tpr","fpr")
 plot(rf.perf,add=TRUE,col="purple",lwd=2)
 
+#neural network
+library(neuralnet)
+maxs <- apply(trainData, 2, max) 
+mins <- apply(trainData, 2, min)
+scaledTrain <- as.data.frame(scale(trainData, center = mins, scale = maxs - mins))
+f <- as.formula(paste("trend ~", paste(n[!n %in% "trend"], collapse = " + ")))
+f
+nn <- neuralnet(f,data=scaledTrain,hidden=c(5),linear.output = FALSE,lifesign = 'full',threshold = 0.5, err.fct = 'ce')
+
+scaledTest <- as.data.frame(scale(testData, center = mins, scale = maxs - mins))
+
+pr.nn <- compute(nn,scaledTest)
+pr.nnRaw <- pr.nn$net.result
+pr.nnPred = ifelse(pr.nnRaw>=0.5,1,0)
+table(pred = pr.nnPred, truth = testData$trend)
+mean(pr.nnPred!=testData$trend)
+
+
 
 title("With 2015")
 legend("bottomright",legend=c("Logistic","LDA","QDA","SVM","Boostig"),col=c("red","black","blue","green","pink"),lty=1,lwd=2,cex=.8)
