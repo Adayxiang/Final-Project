@@ -138,7 +138,7 @@ plot(nn)
 
 scaledTest <- as.data.frame(scale(testData, center = mins, scale = maxs - mins))
 
-pr.nn <- compute(nn,scaledTest)
+pr.nn <- compute(nn,scaledTest[,-12])
 pr.nnRaw <- pr.nn$net.result*(maxs-mins)+mins
 (mean((pr.nnRaw-testData['x_2015'])^2))^0.5
 
