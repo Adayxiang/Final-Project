@@ -132,7 +132,7 @@ n <- names(scaledTrain)
 n
 f <- as.formula(paste("x_2015 ~", paste(n[!n %in% "x_2015"], collapse = " + ")))
 f
-nn <- neuralnet(f,data=scaledTrain,hidden=c(5),linear.output = TRUE,lifesign = 'full')
+nn <- neuralnet(f,data=scaledTrain,hidden=c(5),linear.output = TRUE,lifesign = 'full',threshold = 0.1)
 
 plot(nn)
 
