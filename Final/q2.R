@@ -120,8 +120,16 @@ data1=data.frame(data,Trend)
 set.seed(1)
 test1=sample(nrow(data1),nrow(data1)/10)
 train1=-test1
-trainData1=data1[train1,c(-1,-14,-15,-24)]
-testData1=data1[test1,c(-1,-14,-15,-24)]
+if(is_without_2015)
+{
+  trainData1=data1[train1,c(-1,-13,-14,-15,-24)]
+  testData1=data1[test1,c(-1,-13,-14,-15,-24)]
+  
+}else
+{
+  trainData1=data1[train1,c(-1,-14,-15,-24)]
+  testData1=data1[test1,c(-1,-14,-15,-24)]
+}
 ytrain1=trainData1$Trend
 ytest1=testData1$Trend
 
