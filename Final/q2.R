@@ -36,7 +36,7 @@ library(boot)
 glm.fit=glm(trend~.,data=LineartrainData,family="binomial")
 summary(glm.fit)
 coef(glm.fit)
-glm.pro=predict(glm.fit,LineartestData)
+glm.pro=predict(glm.fit,LineartestData,type = "response")
 glm.pre=ifelse(glm.pro>0.5,1,0)
 cm.glm=table(LineartestData$trend,glm.pre)
 cm.glm
