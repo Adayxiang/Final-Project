@@ -5,6 +5,7 @@ is_final_optimization = TRUE
 
 library(Matrix)
 library(ISLR)
+library(ROCR)
 data = read.csv('D:\\Users\\lenovo\\Desktop\\Courses\\ECE625\\Final_1202\\dataset_1202.CSV',header = TRUE)
 set.seed(1)
 test = sample(nrow(data),nrow(data)/10)
